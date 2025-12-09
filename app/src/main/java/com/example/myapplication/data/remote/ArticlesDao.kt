@@ -4,7 +4,7 @@ import com.example.myapplication.domain.model.Article
 import com.example.myapplication.domain.model.Articles
 
 data class ArticlesDao(
-    val articles: List<ArticleDao>?=null,
+    val articles: ArrayList<ArticleDao>?=null,
     val status: String?=null,
     val totalResults: Int?=null
 )
