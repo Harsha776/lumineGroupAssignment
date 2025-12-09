@@ -13,12 +13,12 @@ object CommonUtility {
     fun switchFragment(fragmentManager: FragmentManager,fragment: Fragment,addToBackStackRequired:Boolean=false){
         if (addToBackStackRequired){
             fragmentManager.beginTransaction()
-                .replace(R.id.fragmentContainer, fragment)
+                .add(R.id.fragmentContainer, fragment)
                 .addToBackStack(null)
                 .commit()
         }else{
             fragmentManager.beginTransaction()
-                .replace(R.id.fragmentContainer, fragment)
+                .add(R.id.fragmentContainer, fragment)
                 .commit()
         }
     }

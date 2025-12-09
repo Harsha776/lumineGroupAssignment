@@ -28,6 +28,8 @@ class ArticleDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel= ViewModelProvider(requireActivity())[MainViewModel::class.java]
+        binidng.root.isClickable = true
+        binidng.root.isFocusable = true
         viewModel.articleDetails.observe(requireActivity()) { article ->
             article?.let {
                 Glide.with(binidng.headerImage.context)
