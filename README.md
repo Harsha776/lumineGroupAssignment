@@ -2,8 +2,10 @@
 
 A modern Android news application built with Kotlin that displays articles from the NewsAPI. 
 The app follows Clean Architecture principles and implements MVVM pattern for better code organization and maintainability.
-<img width="360" height="740" alt="Screenshot 2025-12-10 at 12 18 27 AM" src="https://github.com/user-attachments/assets/1470b123-fa9a-4f82-93d5-cb8785530535" />
-<img width="416" height="899" alt="Screenshot 2025-12-10 at 1 16 16 AM" src="https://github.com/user-attachments/assets/f7e5e51a-b194-40b5-aba0-16627e39de33" />
+
+
+<img width="416" height="899" alt="Screenshot 2025-12-10 at 1 16 16 AM" src="https://github.com/user-attachments/assets/f7e5e51a-b194-40b5-aba0-16627e39de33" /><img width="360" height="740" alt="Screenshot 2025-12-10 at 12 18 27 AM" src="https://github.com/user-attachments/assets/1470b123-fa9a-4f82-93d5-cb8785530535" />
+
 
 
 ## 📱 Features
