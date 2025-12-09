@@ -8,7 +8,6 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.myapplication.R
 import com.example.myapplication.data.remote.ArticleDao
 import com.example.myapplication.databinding.ItemArticleListBinding
-import com.example.myapplication.domain.model.Article
 import com.example.myapplication.utility.CommonUtility
 import com.example.myapplication.utility.CommonUtility.dpToPx
 

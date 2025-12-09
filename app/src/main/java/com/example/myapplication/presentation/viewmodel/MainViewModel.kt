@@ -26,13 +26,12 @@ class MainViewModel: ViewModel() {
     val repository = PostRepositoryImpl(RetrofitInstance.api)
     val useCase = GetPostsUseCase(repository)
 
-    fun fetchPosts() {
+    fun fetchPosts(pageCount:Int) {
         val coroutineHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
         }
         viewModelScope.launch(Dispatchers.IO +coroutineHandler) {
             try {
-                useCase.getPost().collect{ postList->
-                    Log.d("TAG", "fetchPosts: "+postList.articles?.size)
+                useCase.getPost(pageCount).collect{ postList->
                     _posts.postValue(postList)
                 }
             } catch (e: Exception) {
