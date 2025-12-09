@@ -11,15 +11,15 @@ import com.example.myapplication.databinding.ItemArticleListBinding
 import com.example.myapplication.utility.CommonUtility
 import com.example.myapplication.utility.CommonUtility.dpToPx
 
-class ArticleAdapter(private val listner:(ArticleDao)->Unit):RecyclerView.Adapter<ArticleAdapter.UserViewHolder>() {
+class ArticleAdapter(private val listner:(ArticleDao)->Unit):RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder>() {
     val articaleList:ArrayList<ArticleDao> = ArrayList()
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
         val binding = ItemArticleListBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
         )
-        return UserViewHolder(binding)
+        return ArticleViewHolder(binding)
     }
 
     fun setData(list:ArrayList<ArticleDao>?){
@@ -29,13 +29,13 @@ class ArticleAdapter(private val listner:(ArticleDao)->Unit):RecyclerView.Adapte
         }
 
     }
-    override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
         holder.bind(articaleList.get(position))
     }
 
     override fun getItemCount(): Int = articaleList.size
 
-    inner class UserViewHolder(val binding: ItemArticleListBinding)
+    inner class ArticleViewHolder(val binding: ItemArticleListBinding)
         : RecyclerView.ViewHolder(binding.root){
 
             fun bind(article:ArticleDao){

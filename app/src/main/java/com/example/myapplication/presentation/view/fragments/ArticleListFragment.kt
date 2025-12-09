@@ -84,7 +84,7 @@ class ArticleListFragment : Fragment() {
                 val totalItems = layoutManager.itemCount
                 if (lastVisible == totalItems - 1 && pageCount<5) {
                    binidng.loadMoreView.visibility = View.VISIBLE
-                    binidng.tvTotal.setText(getString(R.string.total_results)+" ${adapter.articaleList.size}")
+                    binidng.tvTotal.setText(getString(R.string.total_results)+" ${adapter.itemCount}")
                 }else{
                     binidng.loadMoreView.visibility = View.GONE
                 }
