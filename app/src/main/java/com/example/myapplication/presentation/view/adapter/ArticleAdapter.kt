@@ -11,7 +11,7 @@ import com.example.myapplication.databinding.ItemArticleListBinding
 import com.example.myapplication.utility.CommonUtility
 import com.example.myapplication.utility.CommonUtility.dpToPx
 
-class ArticleAdapter:RecyclerView.Adapter<ArticleAdapter.UserViewHolder>() {
+class ArticleAdapter(private val listner:(ArticleDao)->Unit):RecyclerView.Adapter<ArticleAdapter.UserViewHolder>() {
     val articaleList:ArrayList<ArticleDao> = ArrayList()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val binding = ItemArticleListBinding.inflate(
@@ -30,7 +30,7 @@ class ArticleAdapter:RecyclerView.Adapter<ArticleAdapter.UserViewHolder>() {
 
     }
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
-        holder.bind(position,articaleList.get(position))
+        holder.bind(articaleList.get(position))
     }
 
     override fun getItemCount(): Int = articaleList.size
@@ -38,7 +38,7 @@ class ArticleAdapter:RecyclerView.Adapter<ArticleAdapter.UserViewHolder>() {
     inner class UserViewHolder(val binding: ItemArticleListBinding)
         : RecyclerView.ViewHolder(binding.root){
 
-            fun bind(position:Int,article:ArticleDao){
+            fun bind(article:ArticleDao){
                 binding.tvTitle.setText(article.title)
                 binding.tvShortDes.setText(article.description)
                 binding.tvStartDate.setText(CommonUtility.dateFormat(article.publishedAt))
@@ -49,6 +49,9 @@ class ArticleAdapter:RecyclerView.Adapter<ArticleAdapter.UserViewHolder>() {
                     .transform(RoundedCorners(radius))   // corner radius in px
                     .placeholder(R.drawable.ic_launcher_background)
                     .into(binding.ivImage)
+                binding.clMain.setOnClickListener {
+                    listner.invoke(article)
+                }
             }
         }
 }

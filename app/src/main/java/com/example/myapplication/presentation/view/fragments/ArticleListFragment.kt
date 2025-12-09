@@ -1,6 +1,7 @@
 package com.example.myapplication.presentation.view.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,14 +14,13 @@ import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentArticleListBinding
 import com.example.myapplication.presentation.view.adapter.ArticleAdapter
 import com.example.myapplication.presentation.viewmodel.MainViewModel
+import com.example.myapplication.utility.CommonUtility
 
 class ArticleListFragment : Fragment() {
     lateinit var  viewModel : MainViewModel
     lateinit var binidng: FragmentArticleListBinding
     var pageCount=1
-    val adapter by lazy {
-        ArticleAdapter()
-    }
+    lateinit var adapter :ArticleAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,9 +38,13 @@ class ArticleListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel= ViewModelProvider(this).get(MainViewModel::class.java)
+        viewModel= ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
         binidng.recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
+        adapter = ArticleAdapter{ articleDao ->
+            viewModel.setArticleDetails(articleDao)
+            CommonUtility.switchFragment( requireActivity().supportFragmentManager,ArticleDetailsFragment(),true)
+        }
         binidng.recyclerView.adapter = adapter
         binidng.progressBar.visibility=View.VISIBLE
         viewModel.fetchPosts(pageCount)

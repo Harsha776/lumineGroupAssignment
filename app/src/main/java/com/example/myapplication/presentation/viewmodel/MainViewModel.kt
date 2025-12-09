@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.myapplication.data.remote.ArticleDao
 import com.example.myapplication.data.remote.ArticlesDao
 import com.example.myapplication.data.repository.PostRepositoryImpl
 import com.example.myapplication.data.remote.RetrofitInstance
@@ -21,7 +22,12 @@ class MainViewModel: ViewModel() {
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
 
+    private val _articleDetails = MutableLiveData<ArticleDao>()
+    val articleDetails: LiveData<ArticleDao> = _articleDetails
 
+    fun setArticleDetails(articleDao: ArticleDao){
+        _articleDetails.postValue(articleDao)
+    }
 
     val repository = PostRepositoryImpl(RetrofitInstance.api)
     val useCase = GetPostsUseCase(repository)

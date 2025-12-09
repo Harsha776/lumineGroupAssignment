@@ -1,6 +1,7 @@
 package com.example.myapplication.utility
 
 import android.content.Context
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.myapplication.R
 import com.example.myapplication.presentation.view.fragments.ArticleListFragment
@@ -9,10 +10,21 @@ import java.time.ZoneId
 
 object CommonUtility {
 
-    fun switchFragment(fragmentManager: FragmentManager,fragment: ArticleListFragment){
-        fragmentManager.beginTransaction()
-            .add(R.id.fragmentContainer, fragment)
-            .commit()
+    fun switchFragment(fragmentManager: FragmentManager,fragment: Fragment,addToBackStackRequired:Boolean=false){
+        if (addToBackStackRequired){
+            fragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer, fragment)
+                .addToBackStack(null)
+                .commit()
+        }else{
+            fragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer, fragment)
+                .commit()
+        }
+    }
+
+    fun popFragment(fragmentManager: FragmentManager){
+        fragmentManager.popBackStack()
     }
 
     fun dateFormat(input:String?):String?{
