@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.text.HtmlCompat
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.myapplication.R
@@ -36,7 +37,10 @@ class ArticleDetailsFragment : Fragment() {
                     .load(article.urlToImage)
                     .placeholder(R.drawable.ic_launcher_background)
                     .into(binidng.headerImage)
-                binidng.tvContent.text = article.content
+                binidng.tvContent.text = HtmlCompat.fromHtml(
+                    article.content?:"",
+                    HtmlCompat.FROM_HTML_MODE_LEGACY
+                )
                 binidng.tvDate.text = "Digitimes  ${CommonUtility.dateFormat(article.publishedAt)}"
             }
 
